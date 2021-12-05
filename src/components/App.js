@@ -1,24 +1,20 @@
+import React, { useState } from 'react';
 import './App.css';
-import Custom from './Custom';
 import Header from './Header';
 
-let city = "Bhubaneswar";
-let age = 2;
 
 function App() {
+  const [counter, setCounter] = useState(0)
 
   function btnClickedFn() {
-    console.log('i was pressed');
+    setCounter(1);
   }
 
   return (
     <>
     <Header />
-    <Custom name="Sanjeeb somu Gochhayat" city={city}/>
-    {/* {false && <p>This may be visible</p>} */}
-    {age > 18 && <p>Allowed</p>}
-    {age > 18 ? <p>Allowed</p> : <p>Not Allowed</p>}
-    <button onClick={btnClickedFn} >Click Me</button>
+    <h1>Counter: {counter}</h1>
+    <button onClick={btnClickedFn} >Increase</button>
     </>
   );
 }
