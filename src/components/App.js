@@ -11,30 +11,27 @@ function App() {
   ]);
   const [task, setTask] = useState(""); //this hook is for getting the value inside the input field
 
-  function addTodo() {
+  function addTodo(e) {
+    e.preventDefault();
     setTask(""); //this will set the input value blank
     setTodos((oldTodos) => {
       return [...oldTodos, task]; //old todos with new texts
     });
   }
 
-  function tryToCheckForEnterKey(e){
-    if (e.keyCode === 13) {
-      addTodo();
-    }
-  }
   return (
     <>
+    <form onSubmit ={addTodo}>
       <h1>This is the best TODO App ever</h1>
       <input
-        onKeyDown={tryToCheckForEnterKey}
         value={task}
         onChange={(e) => {
           //value and onchange is necessery
           setTask(e.target.value); //settask re se input value ku grab kariki task variable ku patha hela then settodos re sei task varibble ku use karikki ta value ku display karagala
         }}
       />
-      <button onClick={addTodo}>Add</button>
+      <button>Add</button>
+      </form>
       <ul>
         {todos.map((todo) => {
           return <li>{todo}</li>;
