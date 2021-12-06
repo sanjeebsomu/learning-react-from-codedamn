@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React,{ useState } from 'react';
 import './App.css';
 
 
 function App() {
-  const quotes = [
-    "If you are good enough, never do it for free",
-    "i am not afraid of a man who practice 1000 kicks 1 time, rather practice 1 kick thousand times",
-    "abc",
-    "def"
-  ]
-  const [quote, setquote] = useState(quotes[0])
+  const [todos, setTodos] = useState(['Add Your Task From Above Input Field'])
+  const [extract, setExtract] = useState()//extract from input field
 
-  useEffect(() => {
-    console.log('I Ran', quote);
-  }, [quote])
-  function randomizeQuotes(){
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
-    setquote(randomQuote)
+  function createTodo(){
+    setTodos(oldTodos =>{
+      return[...oldTodos, extract]
+    })
   }
+
   return (
     <>
-    <div>{quote}</div>                                                    
-    <button onClick={randomizeQuotes} >click Me</button>
+    <h1>Best To-Do App Ever</h1>
+    <input type="text" value={extract} onChange={e =>{
+      setExtract(e.target.value)
+    }} />
+    <button onClick={createTodo} >Create TODO</button>
+    <ul>
+      {todos.map(todo =>{
+        return <li>{todo}</li>
+      })}
+    </ul>
     </>
   );
 }
