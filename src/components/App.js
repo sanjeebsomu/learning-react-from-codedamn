@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 
@@ -9,14 +9,18 @@ function App() {
     "abc",
     "def"
   ]
-  const [quote, setQuote] = useState(quotes[0])
+  const [quote, setquote] = useState(quotes[0])
+
+  useEffect(() => {
+    console.log('I Ran', quote);
+  }, [quote])
   function randomizeQuotes(){
-    const randomQuotes = quotes[Math.floor(Math.random() * quotes.length)]
-    setQuote(randomQuotes)
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
+    setquote(randomQuote)
   }
   return (
     <>
-    <div>{quote}</div>
+    <div>{quote}</div>                                                    
     <button onClick={randomizeQuotes} >click Me</button>
     </>
   );
