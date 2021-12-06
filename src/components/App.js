@@ -1,32 +1,23 @@
 import React, { useState } from 'react';
 import './App.css';
-import Header from './Header';
 
 
 function App() {
-  const [counter, setCounter] = useState(0)
-
-  function increase() {
-    // setCounter(counter + 1);           //do this when we do not depend on the older value
-    /*setCounter(function(oldCounterVal){   //do this when we have to depend on the previous(older value)
-      return oldCounterVal + 1;
-    })*/
-    //or one liner
-    setCounter(oldCounterVal => oldCounterVal + 1)//read this as "set counter function oldecounterval return oldcounterval + 1"
+  const quotes = [
+    "If you are good enough, never do it for free",
+    "i am not afraid of a man who practice 1000 kicks 1 time, rather practice 1 kick thousand times",
+    "abc",
+    "def"
+  ]
+  const [quote, setQuote] = useState(quotes[0])
+  function randomizeQuotes(){
+    const randomQuotes = quotes[Math.floor(Math.random() * quotes.length)]
+    setQuote(randomQuotes)
   }
-  function decrease() {
-    // setCounter(counter - 1);           //do this when we do not depend on the older value
-    setCounter(function(oldCounterVal){   //do this when we have to depend on the previous(older value)
-      return oldCounterVal - 1;
-    })
-  }
-
   return (
     <>
-    <Header />
-    <h1>Counter: {counter}</h1>
-    <button onClick={increase} >Increase</button>
-    <button onClick={decrease} >Decrease</button>
+    <div>{quote}</div>
+    <button onClick={randomizeQuotes} >click Me</button>
     </>
   );
 }
