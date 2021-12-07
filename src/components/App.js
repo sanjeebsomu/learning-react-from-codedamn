@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import "./App.css";
+let globalID = 0
 
 function App() {
-  const [todos, setTodos] = useState([
-    //this hook is for displaying the todos list, will use submit when add btn will be clicked
-    "sanjeeb", //this value will be stored inside todos variable
-    "gochhayat",
-    "somu",
-    "bhubaneswar",
-  ]);
+  const [todos, setTodos] = useState([]);
   const [task, setTask] = useState(""); //this hook is for getting the value inside the input field
 
   function addTodo(e) {
     e.preventDefault();
     setTask(""); //this will set the input value blank
     setTodos((oldTodos) => {
-      return [...oldTodos, task]; //old todos with new texts
+      return [...oldTodos, { todo: task, id: globalID++ }]; //old todos with new object
     });
+  }
+
+  function deleteItem(itemID){          //this itemID is a parameter and its value comes from button onclick
+    setTodos(oldTodos => oldTodos.filter(item => item.id !== itemID))
   }
 
   return (
@@ -33,8 +32,11 @@ function App() {
       <button>Add</button>
       </form>
       <ul>
-        {todos.map((todo) => {
-          return <li>{todo}</li>;
+        {todos.map((item, index) => {
+          return <div key={item.id}>
+                  <li>{item.todo} ({item.id})</li>
+                  <button onClick={()=> deleteItem(item.id)} >Delete</button>
+                  </div> 
         })}
       </ul>
     </>
