@@ -21,10 +21,10 @@ function App() {
             <Link to="/user/somu">Profile 1</Link>
             </li>
             <li>
-            <Link to="/user/sanjeeb">Profile 2</Link>
+            <Link to="/user/ajay">Profile 2</Link>
             </li>
             <li>
-            <Link to="/user/gochhayat">Profile 3</Link>
+            <Link to="/user/saumya">Profile 3</Link>
             </li>
           </ul>
         </nav>
